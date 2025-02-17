@@ -1,0 +1,5 @@
+{
+  "dotnet.preferCSharpExtension": true,
+  "editor.hover.enabled": true,
+  "dotnet.defaultSolution": "Library/PackageCache/com.unity.collab-proxy@1.14.18/CollabProxy.sln"
+}
