@@ -8,10 +8,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField]
     private float _speed = 4f;
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()

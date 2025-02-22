@@ -182,6 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 4071599752697130096, guid: 7838e9f176a1d4564b6a10b306365755,
     type: 3}
+  _tripleShotPowerupPrefab: {fileID: 920932413982197030, guid: 8478cf5db598545a9aaf7ca651108afb,
+    type: 3}
+  _speedPowerupPrefab: {fileID: 294547126375370723, guid: 405271256143a40f8be028ca6f0a4b71,
+    type: 3}
   _enemyContainer: {fileID: 432388636}
 --- !u!4 &694873189
 Transform:
@@ -394,10 +398,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _speedMultiplier: 8.5
   _laserPrefab: {fileID: 4578378422854057746, guid: 7112c3cb96cca4404b44522cb05da155,
+    type: 3}
+  _tripleShotPrefab: {fileID: 211060619298211691, guid: 711f354bbb8134ef1bc5bf512bf5766a,
     type: 3}
   _fireRate: 0.15
   _lives: 3
+  _isTripleShotActive: 1
+  _isSpeedBoostActive: 0
 --- !u!212 &1565077321
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -456,7 +465,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565077319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -575,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 1821538736}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
