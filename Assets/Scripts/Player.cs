@@ -10,17 +10,18 @@ public class Player : MonoBehaviour
     // every variable has a name
     // optional value assigned
 
-    // The f suffix means that this is a float
-    [SerializeField]  // This means that this variable will show up in the inspector
-    private float _speed = 3.5f;
+    [SerializeField]
+    private float _speed = 5.0f;
 
     [SerializeField]
-    private float _speedMultiplier = 8.5f;
+    private float _speedMultiplier = 10.0f;
     [SerializeField]
     private GameObject _laserPrefab;
 
     [SerializeField]
     private GameObject _tripleShotPrefab;
+
+
     [SerializeField]
     private float _fireRate = 0.15f;
     private float _canFire = -1f;
@@ -28,12 +29,14 @@ public class Player : MonoBehaviour
     private int _lives = 3;
     private SpawnManager _spawnManager;
 
-    // Variable for isTripleShotActive.
-    [SerializeField]
     private bool _isTripleShotActive = false;
+    private bool _isSpeedBoostActive = false;
+    [SerializeField]
+    private bool _isShieldActive = false;
+
 
     [SerializeField]
-    private bool _isSpeedBoostActive = false;
+    private GameObject _shieldVisualizer;
 
 
     // Start is called before the first frame update
@@ -110,8 +113,20 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
     public void Damage()
     {
+
+        if (_isShieldActive == true)
+        {
+            _isShieldActive = false;
+            // deactivate the shield visual
+            _shieldVisualizer.SetActive(false);
+
+
+            return;
+        }
         // this subtracts 1 from the lives
         _lives--;
 
@@ -123,6 +138,8 @@ public class Player : MonoBehaviour
 
     }
 
+
+    // * Powerup methods
     public void TripleShotActive()
     {
         // Activate the powerup
@@ -147,5 +164,12 @@ public class Player : MonoBehaviour
         _isSpeedBoostActive = false;
     }
 
+    public void ShieldActive()
+    {
+        // Activate the powerup
+        _isShieldActive = true;
+        // Activate the shield visual
+        _shieldVisualizer.SetActive(true);
+    }
 
 }

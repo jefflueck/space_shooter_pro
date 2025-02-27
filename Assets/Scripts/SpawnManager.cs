@@ -8,21 +8,16 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyPrefab;
 
     [SerializeField]
-    private GameObject _tripleShotPowerupPrefab;
-
-    [SerializeField]
-    private GameObject _speedPowerupPrefab;
-
-    [SerializeField]
     private GameObject _enemyContainer;
+    [SerializeField]
+    private GameObject[] powerups;
 
     private bool _stopSpawning = false;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnTripleShootRoutine());
-        StartCoroutine(SpawnSpeedPowerupRoutine());
+        StartCoroutine(SpawnPowerUp());
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -36,32 +31,20 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnTripleShootRoutine()
+    IEnumerator SpawnPowerUp()
     {
         // every 3 -7 seconds, spawn in a powerup
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            Instantiate(_tripleShotPowerupPrefab, posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(5, 9));
+            int powerupIndex = Random.Range(0, 3);
+            Instantiate(powerups[powerupIndex], posToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 8));
 
 
         }
 
     }
-
-    IEnumerator SpawnSpeedPowerupRoutine()
-    {
-        // every 3 -7 seconds, spawn in a powerup
-        while (_stopSpawning == false)
-        {
-            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            Instantiate(_speedPowerupPrefab, posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(5, 9));
-        }
-
-    }
-
     public void OnPlayerDeath()
     {
         _stopSpawning = true;

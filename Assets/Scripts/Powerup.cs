@@ -37,8 +37,7 @@ public class Powerup : MonoBehaviour
                         player.SpeedBoostActive();
                         break;
                     case 2:
-                        // player.ShieldActive();
-                        Debug.Log("Shield Active");
+                        player.ShieldActive();
                         break;
                 }
                 Destroy(this.gameObject);
