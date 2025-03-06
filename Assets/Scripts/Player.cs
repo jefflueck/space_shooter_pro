@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private GameObject _rightEngine, _leftEngine;
+
 
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
@@ -38,10 +41,16 @@ public class Player : MonoBehaviour
     private bool _isShieldActive = false;
 
 
+
     [SerializeField]
     private GameObject _shieldVisualizer;
 
     private UIManager _uiManager;
+
+    [SerializeField]
+    private AudioClip _laserSoundClip;
+    private AudioSource _audioSource;
+
 
 
     // Start is called before the first frame update
@@ -51,13 +60,24 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioSource = GetComponent<AudioSource>();
         if (_spawnManager == null)
         {
             Debug.LogError("Spawn Manager is NULL");
         }
+
         if (_uiManager == null)
         {
             Debug.LogError("UI Manager is NULL");
+        }
+
+        if (_audioSource == null)
+        {
+            Debug.LogError("AudioSource on the player is NULL");
+        }
+        else
+        {
+            _audioSource.clip = _laserSoundClip;
         }
     }
 
@@ -121,6 +141,9 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
+
+        // play the audio laser clip
+        _audioSource.Play();
     }
 
 
@@ -139,6 +162,18 @@ public class Player : MonoBehaviour
         }
         // this subtracts 1 from the lives
         _lives--;
+
+
+        if (_lives == 2)
+        {
+            _rightEngine.SetActive(true);
+        }
+        else if (_lives == 1)
+        {
+            _leftEngine.SetActive(true);
+        }
+
+
         _uiManager.UpdateLives(_lives);
 
         if (_lives < 1)
