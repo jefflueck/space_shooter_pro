@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
+  _laserPrfab: {fileID: 5588570365155010727, guid: 6acb28f6c8b544a80beacfcbd32b8583,
+    type: 3}
   _audioSource: {fileID: 0}
 --- !u!212 &8240928481650713064
 SpriteRenderer:
