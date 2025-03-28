@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
 
     [SerializeField]
+    private GameManager _gameManager;
+
+
+
+    [SerializeField]
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
 
@@ -58,10 +63,24 @@ public class Player : MonoBehaviour
     void Start()
     {
         // Take current position = new position (0, 0, 0)
-        transform.position = new Vector3(0, 0, 0);
+
+
+
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game Manager is NULL");
+        }
+
+        if (_gameManager._isCoOpMode == false)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+
+
         if (_spawnManager == null)
         {
             Debug.LogError("Spawn Manager is NULL");
@@ -75,6 +94,10 @@ public class Player : MonoBehaviour
         if (_audioSource == null)
         {
             Debug.LogError("AudioSource on the player is NULL");
+        }
+        if (_gameManager == null)
+        {
+            Debug.LogError("Game Manager is NULL");
         }
         else
         {
